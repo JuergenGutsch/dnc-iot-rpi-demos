@@ -3,7 +3,6 @@
 @{
     Layout = "/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Home Page";
-    string helloClass = null;
 }
 
 <div class="jumbotron">
@@ -12,13 +11,13 @@
     <p><a href="http://asp.net" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
 </div>
 <div class="row">
-  <div class="col-md-12">
-    <h3 title="@Model.Name" class="@helloClass">Hello @Model.Name!</h3>
-    <p>Ist ein RaspPI: @Model.Board.IsRaspberryPi</p>
-    <p>Raspberry PI Model: @Model.Board.Model</p>
-    <p>Firmware: @Model.Board.Firmware</p>
-<p>SerialNumber: @Model.Board.SerialNumber</p>
-<p>Processor: @Model.Board.Processor</p>
-<p>IsOverclocked: @Model.Board.IsOverclocked</p>
-  </div>
+    <div class="col-md-12">
+        <h3 title="@Model.Name">Hello @Model.Name!</h3>
+        <p>Ist ein RaspPI: @Model.Board.IsRaspberryPi</p>
+        <p>Raspberry PI Model: @Model.Board.Model</p>
+        <p>Firmware: @Model.Board.Firmware</p>
+        <p>SerialNumber: @Model.Board.SerialNumber</p>
+        <p>Processor: @Model.Board.Processor</p>
+        <p>IsOverclocked: @Model.Board.IsOverclocked</p>
+    </div>
 </div>

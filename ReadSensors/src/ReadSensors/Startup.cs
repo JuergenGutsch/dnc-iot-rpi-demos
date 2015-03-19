@@ -1,5 +1,4 @@
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Routing;
 using Microsoft.Framework.DependencyInjection;
 
 namespace HelloMvc
@@ -9,6 +8,8 @@ namespace HelloMvc
         public void Configure(IApplicationBuilder app)
         {
             app.UseErrorPage();
+
+            app.UseStaticFiles();
 
             app.UseServices(services =>
             {
