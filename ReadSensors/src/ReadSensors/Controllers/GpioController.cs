@@ -9,6 +9,11 @@ namespace ReadSensors.Controllers
 {
     public class GpioController : Controller
     {
+	
+	public GpioController()
+	{
+		
+	}
         // GET: /<controller>/
         public IActionResult Index()
         {
@@ -19,7 +24,7 @@ namespace ReadSensors.Controllers
         public JsonResult Gpio11On()
         {
             var led = ConnectorPin.P1Pin11.ToProcessor();
-            var driver = GpioConnectionSettings.DefaultDriver;
+            var driver = new FileGpioConnectionDriver();
 
             driver.Allocate(led, PinDirection.Output);
 
