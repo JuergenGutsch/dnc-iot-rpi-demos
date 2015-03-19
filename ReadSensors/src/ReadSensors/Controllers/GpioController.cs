@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using System.Threading;
+using Microsoft.AspNet.Mvc;
 using Raspberry.IO.GeneralPurpose;
 using Raspberry.IO.GeneralPurpose.Behaviors;
 
@@ -17,12 +18,16 @@ namespace ReadSensors.Controllers
         [HttpPost]
         public JsonResult Gpio11On()
         {
-            var led1 = ConnectorPin.P1Pin11.Output();
-            var connection = new GpioConnection(led1);
+            var led = ConnectorPin.P1Pin11.ToProcessor();
+            var driver = GpioConnectionSettings.DefaultDriver;
 
-            connection.Open();
-            connection.Toggle(led1);
-            connection.Close();
+            driver.Allocate(led, PinDirection.Output);
+
+            driver.Write(led, true);
+            Thread.Sleep(500);
+            driver.Write(led, false);
+
+            driver.Release(led);
 
             return Json(new { Gpio11On = true });
         }
@@ -30,12 +35,16 @@ namespace ReadSensors.Controllers
         [HttpPost]
         public JsonResult Gpio11Off()
         {
-            var led1 = ConnectorPin.P1Pin11.Output();
-            var connection = new GpioConnection(led1);
+            var led = ConnectorPin.P1Pin11.ToProcessor();
+            var driver = GpioConnectionSettings.DefaultDriver;
 
-            connection.Open();
-            connection.Toggle(led1);
-            connection.Close();
+            driver.Allocate(led, PinDirection.Output);
+
+            driver.Write(led, true);
+            Thread.Sleep(500);
+            driver.Write(led, false);
+
+            driver.Release(led);
 
             return Json(new { Gpio11On = false });
         }
