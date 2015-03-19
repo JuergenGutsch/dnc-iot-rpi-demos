@@ -2,6 +2,7 @@
 using MvcSample.Web.Models;
 using Raspberry;
 
+
 namespace MvcSample.Web
 {
     public class HomeController : Controller
@@ -17,7 +18,7 @@ namespace MvcSample.Web
             {
                 Name = "Jürgen Gutsch",
                 Address = "78267 Aach",
-		Board = Board.Current
+                Board = Board.Current
             };
 
             return user;
