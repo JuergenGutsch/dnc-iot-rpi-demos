@@ -18,22 +18,24 @@ namespace ReadSensors.Controllers
         public JsonResult Gpio11On()
         {
             var led1 = ConnectorPin.P1Pin11.Output();
-            using (var connection = new GpioConnection(led1))
-            {
-                connection.Toggle(led1);
-            }
+            var connection = new GpioConnection(led1);
 
-            return Json(new { Gpio11On = true});
+            connection.Open();
+            connection.Toggle(led1);
+            connection.Close();
+
+            return Json(new { Gpio11On = true });
         }
 
         [HttpPost]
         public JsonResult Gpio11Off()
         {
             var led1 = ConnectorPin.P1Pin11.Output();
-            using (var connection = new GpioConnection(led1))
-            {
-                connection.Toggle(led1);
-            }
+            var connection = new GpioConnection(led1);
+
+            connection.Open();
+            connection.Toggle(led1);
+            connection.Close();
 
             return Json(new { Gpio11On = false });
         }
