@@ -2,8 +2,7 @@
 using MvcSample.Web.Models;
 using Raspberry;
 
-
-namespace MvcSample.Web
+namespace ReadSensors.Controllers
 {
     public class HomeController : Controller
     {

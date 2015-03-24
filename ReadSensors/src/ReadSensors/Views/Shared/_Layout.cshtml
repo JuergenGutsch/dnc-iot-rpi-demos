@@ -4,11 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
-    <script src="/Scripts/angular.js"></script>
-    <script src="/Scripts/angular-route.js"></script>
-    <script src="/Scripts/app.js"></script>
-    <script src="/Scripts/GpioController.js"></script>
+    <link rel="stylesheet" href="/Contents/bootstrap.min.css" />
 </head>
 <body ng-app="GpioDemoApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,12 +23,22 @@
             </div>
         </div>
     </div>
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    <script src="/Scripts/angular.js"></script>
+    <script src="/Scripts/angular-route.js"></script>
+    <script src="/Scripts/app.js"></script>
+    <script src="/scripts/jquery-1.8.2.js"></script>
+    <script src="/scripts/jquery.signalr-2.0.3.js"></script>
+    <script src="/signalr/js"></script>
+    <script src="/Scripts/GpioController.js"></script>
+    <script src="/Scripts/SensorsController.js"></script>
 </body>
 </html>

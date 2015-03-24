@@ -1,5 +1,8 @@
 using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Framework.DependencyInjection;
+using ReadSensors.Infrastructure;
+
 
 namespace HelloMvc
 {
@@ -14,7 +17,13 @@ namespace HelloMvc
             app.UseServices(services =>
             {
                 services.AddMvc();
+                services.AddSignalR(options =>
+                {
+                    options.Hubs.EnableDetailedErrors = true;
+                });
             });
+            
+            app.UseSignalR();
 
             app.UseMvc(routes =>
             {
