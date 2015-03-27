@@ -35,7 +35,8 @@
         vm.data = {
             X: 0,
             Y: 0,
-            Z: 0
+            Z: 0,
+            Width: 0
         };
         vm.enable = enable;
         vm.disable = disable;

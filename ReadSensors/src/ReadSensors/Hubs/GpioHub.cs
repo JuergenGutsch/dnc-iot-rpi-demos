@@ -6,18 +6,17 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
+using Raspberry.IO.GeneralPurpose;
 
 namespace ReadSensors.Hubs
 {
     [HubName("sensors")]
     public class GpioHub : Hub
     {
-        public ICollection<string> Users { get; set; }
+        private static readonly ICollection<string> _users = new Collection<string>();
 
         public GpioHub()
         {
-            Users = new Collection<string>();
-
             ReadAcceleratorSensor();
         }
 
@@ -33,28 +32,29 @@ namespace ReadSensors.Hubs
 
         public void Enable(string connectionId)
         {
-            Users.Add(connectionId);
+            _users.Add(connectionId);
             Clients.Client(connectionId).enabled();
         }
 
         private void PostSensorData()
         {
-            if (!Users.Any()) return;
+            if (!_users.Any()) return;
             var rnd = new Random();
 
             var currentSensorData = new
             {
                 X = rnd.Next(0, 90),
                 Y = rnd.Next(0, 90),
-                Z = rnd.Next(0, 90)
+                Z = rnd.Next(0, 90),
+                Width = rnd.Next(0, 90)
             };
 
-            Clients.Clients(Users.ToList()).showessage(currentSensorData);
+            Clients.Clients(_users.ToList()).showessage(currentSensorData);
         }
 
         public void Disable(string connectionId)
         {
-            Users.Remove(connectionId);
+            _users.Remove(connectionId);
             Clients.Client(connectionId).disabled();
         }
     }
