@@ -1,10 +1,8 @@
 using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.StaticFiles;
 using Microsoft.Framework.DependencyInjection;
-using ReadSensors.Infrastructure;
 
-
-namespace HelloMvc
+namespace ReadSensors
 {
     public class Startup
     {
@@ -12,7 +10,10 @@ namespace HelloMvc
         {
             app.UseErrorPage();
 
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                ServeUnknownFileTypes = true
+            });
 
             app.UseServices(services =>
             {
