@@ -12,7 +12,7 @@ namespace ReadSensors
 
             app.UseStaticFiles(new StaticFileOptions
             {
-                ServeUnknownFileTypes = true
+                ServeUnknownFileTypes = true,
             });
 
             app.UseServices(services =>
