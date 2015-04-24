@@ -9,9 +9,10 @@
         "Microsoft.AspNet.Server.WebListener": "1.0.0-beta3",
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta3",
         "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
-        "Raspberry.IO.GeneralPurpose": "2.1.0.2",
-        "Raspberry.System": "1.4.0",
-        "Microsoft.AspNet.SignalR.Server": "3.0.0-*"
+        "Raspberry.IO.GeneralPurpose": "2.3.0.0",
+        "Raspberry.System": "2.0.0.0",
+        "Microsoft.AspNet.SignalR.Server": "3.0.0-*",
+        "UnitsNet": "3.12.0.0"
     },
     "commands": {
         "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5001",

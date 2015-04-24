@@ -11,11 +11,11 @@
     <div class="col-md-12">
         <h2>@ViewBag.Title</h2>
         <p>Status: {{gpio.status}}</p>
-        <p><button id="enable" ng-click="gpio.enable()" type="button">Enable Accelerator</button></p>
-        <p><button id="disable" ng-click="gpio.disable()" type="button">Disable Accelerator</button></p>
+        <p><button id="enable" ng-click="gpio.enable()" type="button">Start measuring</button></p>
+        <p><button id="disable" ng-click="gpio.disable()" type="button">Stop measuring</button></p>
         <p>
-            Data:<br/>
-            {{gpio.data}}
+            Data: {{gpio.data.width}}<br />
+            Server Status: {{gpio.data.status}}<br />
         </p>
     </div>
 </div>

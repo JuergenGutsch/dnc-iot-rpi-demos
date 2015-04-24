@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Raspberry.IO.GeneralPurpose;
+using ReadSensors.Infrastructure;
+using UnitsNet;
 
 namespace ReadSensors.Hubs
 {
@@ -24,7 +26,10 @@ namespace ReadSensors.Hubs
         {
             while (true)
             {
-                await Task.Run(() => PostSensorData());
+                if (_users.Any())
+                {
+                    await Task.Run(() => PostSensorData());
+                }
 
                 Thread.Sleep(TimeSpan.FromSeconds(1));
             }
@@ -38,15 +43,29 @@ namespace ReadSensors.Hubs
 
         private void PostSensorData()
         {
-            if (!_users.Any()) return;
-            var rnd = new Random();
+            //var angles = new Angles3D();
+            //var sclPin = new GpioOutputBinaryPin(null, ConnectorPin.P1Pin15.ToProcessor());
+            //var sdaPin = new GpioInputBinaryPin(null, ConnectorPin.P1Pin16.ToProcessor());
+            //using (var adxl345Connection = new Adxl345Connection(sclPin, sdaPin))
+            //{
+            //    angles = adxl345Connection.ReadAngles();
+            //}
+
+            var distance = Length.FromMeters(0);
+            var triggerPin = new GpioOutputBinaryPin(null, ConnectorPin.P1Pin12.ToProcessor());
+            var echoPin = new GpioInputBinaryPin(null, ConnectorPin.P1Pin11.ToProcessor());
+            using (var sdHr04Connction = new HcSr04Connection(triggerPin, echoPin))
+            {
+                distance = sdHr04Connction.GetDistance();
+            }
+
 
             var currentSensorData = new
             {
-                X = rnd.Next(0, 90),
-                Y = rnd.Next(0, 90),
-                Z = rnd.Next(0, 90),
-                Width = rnd.Next(0, 90)
+                //X = angles.X,
+                //Y = angles.Y,
+                //Z = angles.Z,
+                Width = distance
             };
 
             Clients.Clients(_users.ToList()).showessage(currentSensorData);

@@ -1,12 +1,14 @@
 ﻿using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Raspberry.IO;
+using Raspberry.IO.GeneralPurpose;
 using Raspberry.Timers;
 
 namespace ReadSensors.Infrastructure
 {
     public class Adxl345Connection : IDisposable
     {
-        private const decimal _triggerTime = 0.01m;  // Waits at least 10µs = 0.01ms
+        private static readonly TimeSpan _triggerTime = TimeSpan.FromMilliseconds(0.01);  // Waits at least 10µs = 0.01ms
         private static readonly TimeSpan _echoUpTimeout = TimeSpan.FromMilliseconds(500);
 
         private readonly IOutputBinaryPin _scl;
@@ -19,23 +21,38 @@ namespace ReadSensors.Infrastructure
 
             try
             {
-                Get3dAngle();
+                ReadAngles();
             }
             catch { }
         }
+
         public TimeSpan Timeout { get; set; }
 
-        private void Get3dAngle()
+        public Angles3D ReadAngles()
         {
 
             _scl.Write(true);
             Timer.Sleep(_triggerTime);
             _scl.Write(false);
 
-            var upTime = _sda.Time(true, _echoUpTimeout.Seconds, Timeout.Seconds);
-         //   return Units.Velocity.Sound.ToDistance(upTime) / 2;
 
-         
+            var test = _sda.Time(true, Timeout);
+            var analogValue = _sda.Read();
+            // var value = analogValue.Value;
+
+
+            //_sda.Read();
+            //   return Units.Velocity.Sound.ToDistance(upTime) / 2;
+
+
+            var rnd = new Random();
+
+            return new Angles3D
+            {
+                X = rnd.Next(0, 90),
+                Y = rnd.Next(0, 90),
+                Z = rnd.Next(0, 90)
+            };
         }
 
         public void Dispose()

@@ -8,18 +8,18 @@ namespace ReadSensors.Controllers
     {
         public IActionResult Index()
         {
-            return View(User());
+            return View(GetUser());
         }
 
-        public User User()
+        public User GetUser()
         {
-            User user = new User()
+            var user = new User()
             {
                 Name = "Jürgen Gutsch",
                 Address = "78267 Aach",
                 Board = Board.Current
             };
-
+            
             return user;
         }
     }

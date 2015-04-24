@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using Microsoft.AspNet.Mvc;
 using Raspberry.IO.GeneralPurpose;
+using ReadSensors.Infrastructure;
+using UnitsNet;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,11 +17,42 @@ namespace ReadSensors.Controllers
 
         }
 
-
         // GET: /<controller>/
         public IActionResult Sensors()
         {
             return View();
+        } // GET: /<controller>/
+        public JsonResult GetDistance()
+        {
+            var distance = Length.FromMeters(0);
+            var error = "ALl fine :-)";
+            try
+            {
+                var triggerPin = new GpioOutputBinaryPin(null, ConnectorPin.P1Pin12.ToProcessor());
+                var echoPin = new GpioInputBinaryPin(null, ConnectorPin.P1Pin11.ToProcessor());
+
+                using (var sdHr04Connction = new HcSr04Connection(triggerPin, echoPin))
+                {
+                    distance = sdHr04Connction.GetDistance();
+                }
+            }
+            catch (Exception ex)
+            {
+                var rnd = new Random();
+                distance = Length.FromCentimeters(rnd.Next(0, 100));
+                error = ex.Message;
+            }
+
+
+            var currentSensorData = new
+            {
+                //X = angles.X,
+                //Y = angles.Y,
+                //Z = angles.Z,
+                Width = distance.Centimeters,
+                ServerStatus = error
+            };
+            return Json(currentSensorData);
         }
 
         // GET: /<controller>/
@@ -31,7 +65,7 @@ namespace ReadSensors.Controllers
         public JsonResult Gpio11On()
         {
             var led = ConnectorPin.P1Pin11.ToProcessor();
-            
+
             var driver = new FileGpioConnectionDriver();
 
             driver.Allocate(led, PinDirection.Output);
@@ -76,7 +110,7 @@ namespace ReadSensors.Controllers
             driver.Read(pin3);
 
             var input3 = pin3.Input();
-            
+
 
             return Json(null);
         }
