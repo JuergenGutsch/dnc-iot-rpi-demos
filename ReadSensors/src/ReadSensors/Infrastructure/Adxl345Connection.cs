@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Raspberry.IO;
 using Raspberry.IO.GeneralPurpose;
 using Raspberry.Timers;
+using UnitsNet;
 
 namespace ReadSensors.Infrastructure
 {
@@ -28,7 +29,7 @@ namespace ReadSensors.Infrastructure
 
         public TimeSpan Timeout { get; set; }
 
-        public Angles3D ReadAngles()
+        public Vector3 ReadAngles()
         {
 
             _scl.Write(true);
@@ -38,7 +39,8 @@ namespace ReadSensors.Infrastructure
 
             var test = _sda.Time(true, Timeout);
             var analogValue = _sda.Read();
-            // var value = analogValue.Value;
+
+            var value = analogValue.Value;
 
 
             //_sda.Read();
@@ -47,12 +49,10 @@ namespace ReadSensors.Infrastructure
 
             var rnd = new Random();
 
-            return new Angles3D
-            {
-                X = rnd.Next(0, 90),
-                Y = rnd.Next(0, 90),
-                Z = rnd.Next(0, 90)
-            };
+            return new Vector3(
+                rnd.Next(0, 90),
+                rnd.Next(0, 90),
+                rnd.Next(0, 90));
         }
 
         public void Dispose()

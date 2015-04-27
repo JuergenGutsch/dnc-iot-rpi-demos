@@ -4,6 +4,7 @@ using Microsoft.AspNet.Mvc;
 using Raspberry.IO.GeneralPurpose;
 using ReadSensors.Infrastructure;
 using UnitsNet;
+using UnitsNet.Units;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +12,6 @@ namespace ReadSensors.Controllers
 {
     public class GpioController : Controller
     {
-
         public GpioController()
         {
 
@@ -21,16 +21,17 @@ namespace ReadSensors.Controllers
         public IActionResult Sensors()
         {
             return View();
-        } // GET: /<controller>/
+        }
+
+        // GET: /<controller>/
         public JsonResult GetDistance()
         {
-            var distance = Length.FromMeters(0);
+            Length distance;
             var error = "ALl fine :-)";
             try
             {
                 var triggerPin = new GpioOutputBinaryPin(null, ConnectorPin.P1Pin12.ToProcessor());
                 var echoPin = new GpioInputBinaryPin(null, ConnectorPin.P1Pin11.ToProcessor());
-
                 using (var sdHr04Connction = new HcSr04Connection(triggerPin, echoPin))
                 {
                     distance = sdHr04Connction.GetDistance();
@@ -42,8 +43,7 @@ namespace ReadSensors.Controllers
                 distance = Length.FromCentimeters(rnd.Next(0, 100));
                 error = ex.Message;
             }
-
-
+            
             var currentSensorData = new
             {
                 //X = angles.X,
@@ -52,6 +52,7 @@ namespace ReadSensors.Controllers
                 Width = distance.Centimeters,
                 ServerStatus = error
             };
+
             return Json(currentSensorData);
         }
 
