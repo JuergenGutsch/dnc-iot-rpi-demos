@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNet.Mvc;
-using MvcSample.Web.Models;
-using Raspberry;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNet.Mvc;
 
 namespace ReadSensors.Controllers
 {
@@ -8,19 +9,26 @@ namespace ReadSensors.Controllers
     {
         public IActionResult Index()
         {
-            return View(GetUser());
+            return View();
         }
 
-        public User GetUser()
+        public IActionResult About()
         {
-            var user = new User()
-            {
-                Name = "Jürgen Gutsch",
-                Address = "78267 Aach",
-                Board = Board.Current
-            };
-            
-            return user;
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult Error()
+        {
+            return View("~/Views/Shared/Error.cshtml");
         }
     }
 }

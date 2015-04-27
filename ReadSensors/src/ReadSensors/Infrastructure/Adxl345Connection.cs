@@ -40,7 +40,7 @@ namespace ReadSensors.Infrastructure
             var test = _sda.Time(true, Timeout);
             var analogValue = _sda.Read();
 
-            var value = analogValue.Value;
+          //  var value = analogValue.Value;
 
 
             //_sda.Read();
