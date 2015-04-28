@@ -15,9 +15,9 @@
         "Microsoft.Framework.Logging": "1.0.0-beta3",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta3",
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta3",
-        "Raspberry.IO.GeneralPurpose": "2.3.0.0",
-        "Raspberry.System": "2.0.0.0",
-        "UnitsNet": "3.13.0.0-beta"
+        // "Raspberry.IO.GeneralPurpose": "2.3.0.0",
+        // "Raspberry.System": "2.0.0.0",
+        // "UnitsNet": "3.13.0.0-beta"
     },
     "commands": {
         /* Change the port number when you are self hosting this application */
@@ -31,11 +31,13 @@
     "exclude": [
         "wwwroot",
         "node_modules",
-        "bower_components"
+        "bower_components",
+        "Infrastructure"
     ],
     "bundleExclude": [
         "node_modules",
         "bower_components",
+        "Infrastructure",
         "**.kproj",
         "**.user",
         "**.vspscc"

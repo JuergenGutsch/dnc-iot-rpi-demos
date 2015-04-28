@@ -17,6 +17,8 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+ReadSensors_alt/
+Infrastructure/
 
 # Roslyn cache directories
 *.ide/
