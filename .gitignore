@@ -18,6 +18,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 ReadSensors_alt/
+ReadSensors_alt2/
 Infrastructure/
 
 # Roslyn cache directories
