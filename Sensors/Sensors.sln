@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5DC9DB34-4C67-41FD-84E4-BF2E049A2367}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{202C2B19-270B-41E8-9D13-B066D4C7F07E}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Sensors", "src\Sensors\Sensors.xproj", "{046CCA77-ABF9-4126-AFF8-36D322388162}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{046CCA77-ABF9-4126-AFF8-36D322388162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046CCA77-ABF9-4126-AFF8-36D322388162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046CCA77-ABF9-4126-AFF8-36D322388162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046CCA77-ABF9-4126-AFF8-36D322388162}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{046CCA77-ABF9-4126-AFF8-36D322388162} = {5DC9DB34-4C67-41FD-84E4-BF2E049A2367}
+	EndGlobalSection
+EndGlobal
