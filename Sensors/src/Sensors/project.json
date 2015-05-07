@@ -7,7 +7,6 @@
         "Microsoft.AspNet.Mvc": "6.0.0-beta4",
         "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta4",
         "Microsoft.AspNet.Server.IIS": "1.0.0-beta4",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta4",
         "Microsoft.AspNet.Server.WebListener": "1.0.0-beta4",
         "Microsoft.AspNet.StaticFiles": "1.0.0-beta4",
         "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta4",
@@ -15,7 +14,7 @@
         "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta4",
         "Microsoft.Framework.Logging": "1.0.0-beta4",
         "Microsoft.Framework.Logging.Console": "1.0.0-beta4",
-        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta4",
+        "Microsoft.AspNet.Hosting": "1.0.0-beta4",
         "Kestrel": "1.0.0-beta4"
     },
 
